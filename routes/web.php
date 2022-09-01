@@ -13,6 +13,9 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('v1/session/{sessionId}', 'Index\ScheduleSession@getSessionData');
+$router->get('v1/session/user/{userId}', 'Index\ScheduleSession@getUserSessions');
+$router->get('v1/session/professional/{professionalId}', 'Index\ScheduleSession@getProfessionalSessions');
+$router->post('v1/session/create', 'Index\ScheduleSession@createSession');
+$router->post('v1/session/{sessionId}', 'Index\ScheduleSession@updateSessionDate');
+$router->delete('v1/session/{sessionId}', 'Index\ScheduleSession@deleteSession');
