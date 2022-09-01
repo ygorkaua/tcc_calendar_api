@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Index;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\Builder;
 
 class ScheduleSession extends Controller
 {
