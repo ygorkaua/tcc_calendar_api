@@ -1,0 +1,134 @@
+openapi: 3.0.0
+info:
+  title: 'Session Schedule API'
+  version: '0.1'
+paths:
+  '/v1/session/{sessionId}':
+    get:
+      description: 'Return session with provided ID information'
+      operationId: 54c647042008acd639dd512d9fcbe0e8
+      parameters:
+        -
+          name: sessionId
+          in: query
+          description: 'Session ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Return session information'
+        '400':
+          description: 'Return a error if provided session ID was not found'
+    delete:
+      description: 'Delete session'
+      operationId: b70e6106b0a1bb512fa08529370c0b37
+      parameters:
+        -
+          name: sessionId
+          in: query
+          description: 'Session ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Return a success message'
+        '400':
+          description: 'Return a error if can not delete session'
+  '/v1/session/user/{userId}':
+    get:
+      description: 'Return sessions of user with provided ID'
+      operationId: 559050a07708e40a2742096b9fef0bf7
+      parameters:
+        -
+          name: userId
+          in: query
+          description: 'User ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Return user sessions'
+        '400':
+          description: 'Return a error if sessions with provided user ID was not found'
+  '/v1/session/professional/{professionalId}':
+    get:
+      description: 'Return sessions of professional with provided ID'
+      operationId: 9d032d49fe567004120c479505d9a236
+      parameters:
+        -
+          name: professionalId
+          in: query
+          description: 'Professional ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Return professional sessions'
+        '400':
+          description: 'Return a error if sessions with provided professional ID was not found'
+  '/v1/create/user/{userId}/professional/{professionalId}/sessionDate/{sessionDate}':
+    post:
+      description: 'Create a new session with provided parameters'
+      operationId: 4de75e6cee6d2ba15dd9bafc99283a3d
+      parameters:
+        -
+          name: userId
+          in: query
+          description: 'User ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: professionalId
+          in: query
+          description: 'Professional ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: sessionDate
+          in: query
+          description: 'Session date'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Return session ID'
+        '400':
+          description: 'Return a error if can not create session'
+  '/v1/session/{sessionId}/sessionDate/{sessionDate}':
+    post:
+      description: 'Update session date'
+      operationId: 10db6f53c3f44b6ea07a61b054674b41
+      parameters:
+        -
+          name: sessionId
+          in: query
+          description: 'Session ID'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: sessionDate
+          in: query
+          description: 'New session date'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Return a success message'
+        '400':
+          description: 'Return a error if can not update session date'

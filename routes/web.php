@@ -13,9 +13,13 @@
 |
 */
 
-$router->get('v1/session/{sessionId}', 'Index\ScheduleSession@getSessionData');
-$router->get('v1/session/user/{userId}', 'Index\ScheduleSession@getUserSessions');
-$router->get('v1/session/professional/{professionalId}', 'Index\ScheduleSession@getProfessionalSessions');
-$router->post('v1/session/create', 'Index\ScheduleSession@createSession');
-$router->post('v1/session/{sessionId}', 'Index\ScheduleSession@updateSessionDate');
-$router->delete('v1/session/{sessionId}', 'Index\ScheduleSession@deleteSession');
+$router->get('swaggerapi', function () {
+    return file_get_contents(__DIR__ . '/../public/swagger/index.html');
+});
+$router->get('v1/session/{sessionId}', 'V1\ScheduleSession@getSessionData');
+$router->get('v1/session/user/{userId}', 'V1\ScheduleSession@getUserSessions');
+$router->get('v1/session/professional/{professionalId}', 'V1\ScheduleSession@getProfessionalSessions');
+$router->post('v1/create/user/{userId}/professional/{professionalId}/sessionDate/{sessionDate}', 'V1\ScheduleSession@createSession');
+$router->post('v1/session/{sessionId}/sessionDate/{sessionDate}', 'V1\ScheduleSession@updateSessionDate');
+$router->delete('v1/session/{sessionId}', 'V1\ScheduleSession@deleteSession');
+
