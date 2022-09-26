@@ -6,7 +6,7 @@ paths:
   '/v1/session/{sessionId}':
     get:
       description: 'Return session with provided ID information'
-      operationId: 'Get session information'
+      operationId: 54c647042008acd639dd512d9fcbe0e8
       parameters:
         -
           name: sessionId
@@ -22,8 +22,8 @@ paths:
         '400':
           description: 'Return a error if provided session ID was not found'
     delete:
-      description: 'Delete session information'
-      operationId: 'Delete session'
+      description: 'Delete session'
+      operationId: b70e6106b0a1bb512fa08529370c0b37
       parameters:
         -
           name: sessionId
@@ -41,7 +41,7 @@ paths:
   '/v1/session/user/{userId}':
     get:
       description: 'Return sessions of user with provided ID'
-      operationId: 'Get sessions information of user'
+      operationId: 559050a07708e40a2742096b9fef0bf7
       parameters:
         -
           name: userId
@@ -59,7 +59,7 @@ paths:
   '/v1/session/professional/{professionalId}':
     get:
       description: 'Return sessions of professional with provided ID'
-      operationId: 'Get sessions information of professional'
+      operationId: 9d032d49fe567004120c479505d9a236
       parameters:
         -
           name: professionalId
@@ -77,7 +77,7 @@ paths:
   '/v1/create/user/{userId}/professional/{professionalId}/sessionDate/{sessionDate}':
     post:
       description: 'Create a new session with provided parameters'
-      operationId: 'Create session'
+      operationId: 4de75e6cee6d2ba15dd9bafc99283a3d
       parameters:
         -
           name: userId
@@ -104,13 +104,13 @@ paths:
             type: string
       responses:
         '200':
-          description: 'Return session ID'
+          description: 'Return session and meet ID'
         '400':
           description: 'Return a error if can not create session'
   '/v1/session/{sessionId}/sessionDate/{sessionDate}':
     post:
-      description: 'Update date of session with provided ID'
-      operationId: 'Update session date'
+      description: 'Update session date'
+      operationId: 10db6f53c3f44b6ea07a61b054674b41
       parameters:
         -
           name: sessionId

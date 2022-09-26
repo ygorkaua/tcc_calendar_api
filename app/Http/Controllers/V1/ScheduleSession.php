@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class ScheduleSession extends Controller
     private const USER_ID = 'user_id';
     private const PROFESSIONAL_ID = 'professional_id';
     private const SESSION_DATE = 'session_date';
+    private const MEET_ID = 'meet_id';
 
     private Builder $table;
 
@@ -169,24 +171,39 @@ class ScheduleSession extends Controller
      *     ),
      *     @OA\Response(
      *         response="200",
-     *         description="Return session ID"
+     *         description="Return session and meet ID"
      *     ),
      *     @OA\Response(
      *         response="400",
      *         description="Return a error if can not create session"
      *     ),
      * )
+     * @throws Exception
      */
     public function createSession(int $userId, int $professionalId, string $sessionDate): JsonResponse
     {
+        $sessionDate = sprintf(
+            '%s/%s/%s %s:%s',
+            substr($sessionDate, 0, 2),
+            substr($sessionDate, 2, 2),
+            substr($sessionDate, 4, 4),
+            substr($sessionDate, 8, 2),
+            substr($sessionDate, 10, 2)
+        );
+
+        $meetId = rand();
+
         $sessionId = $this->table->insertGetId([
             self::USER_ID => $userId,
             self::PROFESSIONAL_ID => $professionalId,
-            self::SESSION_DATE => $sessionDate
+            self::SESSION_DATE => $sessionDate,
+            self::MEET_ID => $meetId
         ]);
 
+
+
         return empty($sessionId) ? response()->json(['error' => 'Was not possible to create a new session'], 400)
-            : response()->json(['success' => "Session with id $sessionId created successfully", 'id' => $sessionId]);
+            : response()->json(['success' => "Session with id $sessionId created successfully", 'id' => $sessionId, 'meetId' => $meetId]);
     }
 
     /**
