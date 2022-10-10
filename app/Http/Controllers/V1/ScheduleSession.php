@@ -178,25 +178,15 @@ class ScheduleSession extends Controller
      */
     public function createSession(string $userId, string $professionalId, string $sessionDate): JsonResponse
     {
-        $sessionDate = sprintf(
-            '%s/%s/%s %s:%s',
-            substr($sessionDate, 0, 2),
-            substr($sessionDate, 2, 2),
-            substr($sessionDate, 4, 4),
-            substr($sessionDate, 8, 2),
-            substr($sessionDate, 10, 2)
-        );
-
+        $sessionDate = new \DateTime($sessionDate);
         $meetId = rand();
 
         $sessionId = $this->table->insertGetId([
             self::USER_ID => $userId,
             self::PROFESSIONAL_ID => $professionalId,
-            self::SESSION_DATE => $sessionDate,
+            self::SESSION_DATE => $sessionDate->format('d/m/Y h:s'),
             self::MEET_ID => $meetId
         ]);
-
-
 
         return empty($sessionId) ? response()->json(['error' => 'Was not possible to create a new session'], 400)
             : response()->json(['success' => "Session with id $sessionId created successfully", 'id' => $sessionId, 'meetId' => $meetId]);
