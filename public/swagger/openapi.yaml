@@ -6,7 +6,7 @@ paths:
   '/v1/session/{sessionId}':
     get:
       description: 'Return session with provided ID information'
-      operationId: 54c647042008acd639dd512d9fcbe0e8
+      operationId: 'Get session'
       parameters:
         -
           name: sessionId
@@ -23,7 +23,7 @@ paths:
           description: 'Return a error if provided session ID was not found'
     delete:
       description: 'Delete session'
-      operationId: b70e6106b0a1bb512fa08529370c0b37
+      operationId: 'Delete session'
       parameters:
         -
           name: sessionId
@@ -41,7 +41,7 @@ paths:
   '/v1/session/user/{userId}':
     get:
       description: 'Return sessions of user with provided ID'
-      operationId: 559050a07708e40a2742096b9fef0bf7
+      operationId: 'Get user sessions'
       parameters:
         -
           name: userId
@@ -49,8 +49,7 @@ paths:
           description: 'User ID'
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: 'Return user sessions'
@@ -59,7 +58,7 @@ paths:
   '/v1/session/professional/{professionalId}':
     get:
       description: 'Return sessions of professional with provided ID'
-      operationId: 9d032d49fe567004120c479505d9a236
+      operationId: 'Get professional sessions'
       parameters:
         -
           name: professionalId
@@ -67,8 +66,7 @@ paths:
           description: 'Professional ID'
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: 'Return professional sessions'
@@ -77,7 +75,7 @@ paths:
   '/v1/create/user/{userId}/professional/{professionalId}/sessionDate/{sessionDate}':
     post:
       description: 'Create a new session with provided parameters'
-      operationId: 4de75e6cee6d2ba15dd9bafc99283a3d
+      operationId: 'Create session'
       parameters:
         -
           name: userId
@@ -85,16 +83,14 @@ paths:
           description: 'User ID'
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         -
           name: professionalId
           in: query
           description: 'Professional ID'
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         -
           name: sessionDate
           in: query
@@ -110,7 +106,7 @@ paths:
   '/v1/session/{sessionId}/sessionDate/{sessionDate}':
     post:
       description: 'Update session date'
-      operationId: 10db6f53c3f44b6ea07a61b054674b41
+      operationId: 'Update session'
       parameters:
         -
           name: sessionId

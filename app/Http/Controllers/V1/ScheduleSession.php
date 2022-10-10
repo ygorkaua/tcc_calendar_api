@@ -80,8 +80,7 @@ class ScheduleSession extends Controller
      *         description="User ID",
      *         required=true,
      *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
+     *             type="string"
      *         )
      *     ),
      *     @OA\Response(
@@ -94,7 +93,7 @@ class ScheduleSession extends Controller
      *     ),
      * )
      */
-    public function getUserSessions(int $userId): JsonResponse
+    public function getUserSessions(string $userId): JsonResponse
     {
         $session = $this->table->select()->where(self::USER_ID, $userId)->get();
 
@@ -113,8 +112,7 @@ class ScheduleSession extends Controller
      *         description="Professional ID",
      *         required=true,
      *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
+     *             type="string"
      *         )
      *     ),
      *     @OA\Response(
@@ -127,12 +125,12 @@ class ScheduleSession extends Controller
      *     ),
      * )
      */
-    public function getProfessionalSessions(int $professionalId): JsonResponse
+    public function getProfessionalSessions(string $professionalId): JsonResponse
     {
         $session = $this->table->select()->where(self::PROFESSIONAL_ID, $professionalId)->get();
 
         return empty($session->all())
-            ? response()->json(['error' => 'Sessions with provided professional ID not found'], 400)
+                ? response()->json(['error' => 'Sessions with provided professional ID not found'], 400)
             : response()->json($session->all());
     }
 
@@ -146,8 +144,7 @@ class ScheduleSession extends Controller
      *         description="User ID",
      *         required=true,
      *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
+     *             type="string"
      *         )
      *     ),
      *     @OA\Parameter(
@@ -156,8 +153,7 @@ class ScheduleSession extends Controller
      *         description="Professional ID",
      *         required=true,
      *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
+     *             type="string"
      *         )
      *     ),
      *     @OA\Parameter(
@@ -180,7 +176,7 @@ class ScheduleSession extends Controller
      * )
      * @throws Exception
      */
-    public function createSession(int $userId, int $professionalId, string $sessionDate): JsonResponse
+    public function createSession(string $userId, string $professionalId, string $sessionDate): JsonResponse
     {
         $sessionDate = sprintf(
             '%s/%s/%s %s:%s',
