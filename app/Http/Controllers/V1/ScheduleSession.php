@@ -188,6 +188,10 @@ class ScheduleSession extends Controller
             self::MEET_ID => $meetId
         ]);
 
+        'Access-Control-Allow-Methods': 'HEAD, GET, POST, PUT, PATCH, DELETE'
+        'Access-Control-Allow-Headers': 'Access-Control-Request-Headers'
+        'Access-Control-Allow-Origin': '*'
+
         return empty($sessionId) ? response()->json(['error' => 'Was not possible to create a new session'], 400)
             : response()->json(['success' => "Session with id $sessionId created successfully", 'id' => $sessionId, 'meetId' => $meetId]);
     }
