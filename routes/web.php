@@ -16,6 +16,7 @@
 $router->get('swaggerapi', function () {
     return file_get_contents(__DIR__ . '/../public/swagger/index.html');
 });
+$router->get('v1/session/all', 'V1\ScheduleSession@getAllSessionData');
 $router->get('v1/session/{sessionId}', 'V1\ScheduleSession@getSessionData');
 $router->get('v1/session/user/{userId}', 'V1\ScheduleSession@getUserSessions');
 $router->get('v1/session/professional/{professionalId}', 'V1\ScheduleSession@getProfessionalSessions');

@@ -39,6 +39,23 @@ class ScheduleSession extends Controller
 
     /**
      * @OA\Get(
+     *     path="/v1/session/all",
+     *     description="Return all session information",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Return all session information"
+     *     )
+     * )
+     */
+    public function getAllSessionData(): JsonResponse
+    {
+        $session = $this->table->select()->get();
+
+        return $session->all();
+    }
+
+    /**
+     * @OA\Get(
      *     path="/v1/session/{sessionId}",
      *     description="Return session with provided ID information",
      *     @OA\Parameter(

@@ -3,10 +3,17 @@ info:
   title: 'Session Schedule API'
   version: '0.1'
 paths:
+  /v1/session/all:
+    get:
+      description: 'Return all session information'
+      operationId: 'Return all session information'
+      responses:
+        '200':
+          description: 'Return all session information'
   '/v1/session/{sessionId}':
     get:
       description: 'Return session with provided ID information'
-      operationId: 'Get session'
+      operationId: 'Return session with provided ID information'
       parameters:
         -
           name: sessionId
@@ -41,7 +48,7 @@ paths:
   '/v1/session/user/{userId}':
     get:
       description: 'Return sessions of user with provided ID'
-      operationId: 'Get user sessions'
+      operationId: 'Return sessions of user with provided ID'
       parameters:
         -
           name: userId
@@ -58,7 +65,7 @@ paths:
   '/v1/session/professional/{professionalId}':
     get:
       description: 'Return sessions of professional with provided ID'
-      operationId: 'Get professional sessions'
+      operationId: 'Return sessions of professional with provided ID'
       parameters:
         -
           name: professionalId
@@ -75,7 +82,7 @@ paths:
   '/v1/create/user/{userId}/professional/{professionalId}/sessionDate/{sessionDate}':
     post:
       description: 'Create a new session with provided parameters'
-      operationId: 'Create session'
+      operationId: 'Create a new session with provided parameters'
       parameters:
         -
           name: userId
@@ -106,7 +113,7 @@ paths:
   '/v1/session/{sessionId}/sessionDate/{sessionDate}':
     post:
       description: 'Update session date'
-      operationId: 'Update session'
+      operationId: 'Update session date'
       parameters:
         -
           name: sessionId
