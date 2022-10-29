@@ -51,7 +51,7 @@ class ScheduleSession extends Controller
     {
         $session = $this->table->select()->get();
 
-        return $session->all();
+        return response()->json($session->all());
     }
 
     /**
