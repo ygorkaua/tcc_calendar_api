@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
-
 class SessionsToNotice
 {
     private const TABLE_NAME = 'session_schedule';
@@ -31,13 +30,13 @@ class SessionsToNotice
 
         $sessionsToNotice = [];
         foreach ($sessions as $session) {
-            $now = new DateTime();
-            $sessionDate = new DateTime($session->session_date);
+            $now = new DateTime('-3 hour');
+            $sessionDate = DateTime::createFromFormat('d/m/Y H:i', $session->session_date);
             $diff = $sessionDate->diff($now);
 
             if ($diff->y === 0 && $diff->m === 0 && $diff->d === 0 &&$diff->h === 0 && $diff->i <= 59) {
-                if ($session[self::SESSION_NOTICED == 0]) {
-                    $this->table->where(self::ENTITY_ID, '=', $session[self::ENTITY_ID])
+                if ($session->noticed == 0) {
+                    $this->table->where(self::ENTITY_ID, '=', $session->entity_id)
                         ->update([self::SESSION_NOTICED => 1]);
 
                     $sessionsToNotice[] = $session;

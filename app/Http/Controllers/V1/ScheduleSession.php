@@ -201,7 +201,7 @@ class ScheduleSession extends Controller
         $sessionId = $this->table->insertGetId([
             self::USER_ID => $userId,
             self::PROFESSIONAL_ID => $professionalId,
-            self::SESSION_DATE => $sessionDate->format('d/m/Y h:s'),
+            self::SESSION_DATE => $sessionDate->format('d/m/Y H:i'),
             self::MEET_ID => $meetId
         ]);
 
